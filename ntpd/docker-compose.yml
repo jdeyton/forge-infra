@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+    forge-ntpd:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            network: host
+
+        image: forge-ntpd:latest
+        cap_add:
+            - NET_ADMIN
+            - SYS_NICE
+            - SYS_TIME
+        container_name: forge-ntpd
+        networks:
+            infra:
+                ipv4_address: 192.168.3.42
+        ports:
+            - target: 123
+              published: 123
+              protocol: udp
+        restart: on-failure
+
+networks:
+    infra:
+        external: true
+        name: forge-infra
