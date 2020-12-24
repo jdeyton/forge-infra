@@ -4,8 +4,6 @@ This is the base for services that will expose ports to a subnet. A functioning
 firewall is a minimal expectation of such services as we do not anticipate
 providing all services to all networked devices.
 
-
-
 ## How to Build
 
 It is assumed that you need to build with the host network so that alpine
@@ -52,5 +50,5 @@ CMD ./init && <your service command>
 # Do your other Dockerfile stuff.
 ```
 
-Build your image and confirm that it applies the desired firewall rules and
-behaves as expected.
+**Important:** Run your container with the `NET_ADMIN` capability. Confirm that
+it applies the desired firewall rules and behaves as expected.
